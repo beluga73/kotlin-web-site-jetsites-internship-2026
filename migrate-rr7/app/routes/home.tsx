@@ -1,12 +1,23 @@
 import type { Route } from "./+types/home";
+import GlobalHeader from "@jetbrains/kotlin-web-site-ui/out/components/header";
+import GlobalFooter from "@jetbrains/kotlin-web-site-ui/out/components/footer";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Kotlin Programming Language" },
+    {
+      name: "description",
+      content:
+        "Kotlin is a modern programming language designed to make developers happier.",
+    },
   ];
 }
 
 export default function Home() {
-  return <div>home</div>;
+  return (
+    <div className="overview-page">
+      <GlobalHeader searchConfig={{}} />
+      <GlobalFooter />
+    </div>
+  );
 }
