@@ -7,7 +7,26 @@ import { ProgrammingLanguage } from "../programming-language/index";
 import multiplatformImg from "../images/multiplatform.svg";
 import "./index.scss";
 
-const sections = [
+type YouTubeSection = {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  media: "youtube";
+  youtubeId: string;
+};
+
+type ImageSection = {
+  title: string;
+  description: string;
+  buttonText: string;
+  buttonLink: string;
+  media: "image";
+};
+
+type Section = YouTubeSection | ImageSection;
+
+const sections: Section[] = [
   {
     title: "A productive way to write server-side applications",
     description:
