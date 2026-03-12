@@ -1,7 +1,7 @@
 import { reactRouter } from "@react-router/dev/vite";
-import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, type Plugin } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import path from "node:path";
 
 // During SSR:
 // 1. Node.js can't load .css files as ESM modules → return empty.
@@ -17,7 +17,7 @@ function ssrCompat(): Plugin {
       const isSSR =
         (this as any).environment?.name === "ssr" || options?.ssr === true;
       if (!isSSR) return;
-      if (/\.css(\?.*)?$/.test(id)) return "\0ssr-empty-css";
+      if (/\.(css|scss|sass)(\?.*)?$/.test(id)) return "\0ssr-empty-css";
     },
     load(id) {
       if (id === "\0ssr-empty-css") return "export default {}";
@@ -26,13 +26,14 @@ function ssrCompat(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [tailwindcss(), reactRouter(), tsconfigPaths(), ssrCompat()],
+  plugins: [reactRouter(), tsconfigPaths(), ssrCompat()],
   ssr: {
     noExternal: [/^@rescui\/.*/, /^@jetbrains\/.*/],
   },
   resolve: {
     extensions: [".js", ".ts", ".tsx", ".jsx", ".json", ".mjs"],
     alias: {
+      "~": path.resolve(__dirname, "./app"),
       "@react-hook/resize-observer": new URL(
         "./app/shims/resize-observer.js",
         import.meta.url,
