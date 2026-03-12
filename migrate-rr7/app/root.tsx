@@ -9,7 +9,7 @@ import {
 import { ThemeProvider } from "@rescui/ui-contexts";
 
 import type { Route } from "./+types/root";
-import "./app.css";
+import "./styles/styles-v2.scss";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

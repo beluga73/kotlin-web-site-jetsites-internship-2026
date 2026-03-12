@@ -76,11 +76,9 @@ function WhyKotlinSectionContent() {
   return (
     <Section id="why-kotlin" className="why-kotlin-section">
       <Container>
-        <h2 className={textCn("rs-h1")}>Why Kotlin</h2>
+        <h2 className={textCn("rs-hero")}>Why Kotlin</h2>
 
-        <div className="kto-offset-top-96 kto-offset-top-md-48">
-          <ProgrammingLanguage />
-        </div>
+        <ProgrammingLanguage />
 
         {sections.map((section, index) => (
           <div

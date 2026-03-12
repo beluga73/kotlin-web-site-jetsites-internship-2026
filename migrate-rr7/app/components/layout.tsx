@@ -1,3 +1,5 @@
+import "../styles/layout.scss";
+
 export function Section({
   children,
   className,

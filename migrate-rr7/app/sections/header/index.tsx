@@ -22,7 +22,7 @@ export function HeaderSection() {
 
         <div className="header-section__actions">
           <div>
-            <Button size="l" href="/docs/getting-started.html">
+            <Button size="l" href="#">
               Get started
             </Button>
             <Button

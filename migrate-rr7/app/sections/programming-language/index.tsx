@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "@rescui/button";
 import { useTextStyles } from "@rescui/typography";
 import { TabList, Tab, TabSeparator } from "@rescui/tab-list";
@@ -13,13 +13,15 @@ import "./index.scss";
 
 hljs.registerLanguage("kotlin", kotlin);
 
-const initialIndex = Math.floor(Math.random() * tabs.length);
-
 export function ProgrammingLanguage() {
   const textCn = useTextStyles();
-  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const [activeIndex, setActiveIndex] = useState(0);
   const [highlighted, setHighlighted] = useState("");
-  const codeRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Randomize initial tab only on the client to avoid SSR hydration mismatch
+    setActiveIndex(Math.floor(Math.random() * tabs.length));
+  }, []);
 
   useEffect(() => {
     const el = document.createElement("code");
@@ -54,7 +56,6 @@ export function ProgrammingLanguage() {
         <TabSeparator />
         <pre className="programming-language__code kto-offset-top-16">
           <code
-            ref={codeRef}
             className="hljs"
             dangerouslySetInnerHTML={{ __html: highlighted }}
           />
